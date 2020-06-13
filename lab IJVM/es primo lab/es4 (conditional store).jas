@@ -1,0 +1,32 @@
+.constant
+objref  0xCAFE  // may be any value.  Needed by invokevirtual.
+.end-constant
+
+.main
+.var
+x
+y
+z
+.end-var
+
+          BIPUSH 0
+          ISTORE x
+          BIPUSH 2
+          ISTORE y
+          BIPUSH 3
+          ISTORE z
+          ILOAD x
+          IFEQ T
+          ILOAD z
+          ISTORE x
+          GOTO E      
+      T:  ILOAD y
+          ISTORE x
+      E:  ILOAD x
+          BIPUSH 1
+          IADD
+          ISTORE y
+.end-main          
+        
+    
+

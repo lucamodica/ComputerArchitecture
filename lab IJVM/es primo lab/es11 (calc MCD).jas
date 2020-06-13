@@ -1,0 +1,56 @@
+.constant
+objref  0xCAFE  // may be any value.  Needed by invokevirtual.
+.end-constant
+
+.main
+
+    .var
+        a
+        b
+        res
+    .end-var
+
+    BIPUSH 8
+    ISTORE a
+    BIPUSH 12
+    ISTORE b
+    ILOAD a
+    ILOAD b
+    INVOKEVIRTUAL MCD
+    ISTORE res
+    ILOAD res
+    HALT
+
+.end-main
+
+.method MCD(a,b)
+
+    .var
+    .end-var
+
+    loop:       ILOAD a
+                ILOAD b
+                IF_ICMPEQ return
+                ILOAD a
+                ILOAD b
+                ISUB
+                IFLT caso2
+
+                //Caso in cui a > b
+    caso1:      ILOAD a
+                ILOAD b
+                ISUB
+                ISTORE a
+                GOTO loop
+
+                //Caso in cui a < b
+    caso2:      ILOAD b
+                ILOAD a
+                ISUB
+                ISTORE b
+                GOTO loop
+
+    return:     ILOAD a
+                IRETURN      
+    
+.end-method

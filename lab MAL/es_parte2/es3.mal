@@ -1,0 +1,15 @@
+//Instruction CALC24 varnum: save 17+7 into varnum variable
+
+H = LV
+MAR = H + MBRU
+H = 0
+H = H + 1
+H = OPC = H + 1
+H = OPC = H + OPC //4  
+H = OPC = H + OPC //8
+OPC = OPC -1 //7
+H = H + OPC //15
+H = H + 1  
+H = H + 1
+PC = PC + 1; fetch
+MDR = H + OPC; wr; goto Main1  

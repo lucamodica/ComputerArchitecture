@@ -1,0 +1,8 @@
+//Istruzione LOCAND: AND delle 2 parole con scostamento 1 e 2 da LV
+
+MAR = LV + 1; rd
+SP = SP + 1
+H = MDR
+MAR = LV + 2; rd
+
+MDR = TOS = H AND MDR; wr; goto(Main1)

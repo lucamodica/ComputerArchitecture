@@ -1,0 +1,40 @@
+.constant
+objref  0xCAFE  // may be any value.  Needed by invokevirtual.
+.end-constant
+
+.main
+.var
+x
+y
+z
+sum
+.end-var
+
+            BIPUSH 3
+            ISTORE x
+            BIPUSH 12
+            ISTORE y
+            ILOAD x
+            BIPUSH 1
+            IADD  //Calcolo valore di z
+            ISTORE z
+            BIPUSH 0
+            ISTORE sum
+    init:   ILOAD z  //Condizione loop
+            ILOAD y
+            ISUB
+            IFLT loop
+            GOTO end
+    loop:   ILOAD  sum  //Inizio loop
+            ILOAD z
+            IADD
+            ISTORE sum
+            ILOAD z
+            BIPUSH  1
+            IADD
+            ISTORE z
+            GOTO init
+    end:    HALT
+
+
+.end-main   

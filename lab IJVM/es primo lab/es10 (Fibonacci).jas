@@ -1,0 +1,54 @@
+.constant
+objref  0xCAFE  // may be any value.  Needed by invokevirtual.
+.end-constant
+
+.main
+
+    .var
+        x
+        res
+    .end-var
+
+    BIPUSH 4
+    ISTORE x
+    ILOAD x
+    INVOKEVIRTUAL fibonacci
+    ISTORE res
+    ILOAD res
+    HALT
+
+.end-main
+
+.method fibonacci(x)
+
+    .var
+    .end-var
+
+                //Controllo che x sia 1
+                ILOAD x
+                BIPUSH 1
+                IF_ICMPEQ return_1
+                //Controllo che x sia 2
+                ILOAD x
+                BIPUSH 2
+                IF_ICMPEQ return_1
+                
+                //Caso ricorsivo: ritornerà f(x-1) + f(x-2)
+    return_fib: LDC_W objref
+                ILOAD x
+                BIPUSH 1
+                ISUB
+                INVOKEVIRTUAL fibonacci   //fibonacci(x-1)
+                LDC_W objref
+                ILOAD x
+                BIPUSH 2
+                ISUB
+                INVOKEVIRTUAL fibonacci   //fibonacci(x-2)
+                IADD
+                IRETURN
+
+                //Caso finale della ricorsione: ritorna 1
+    return_1:   BIPUSH 1
+                IRETURN
+    
+.end-method

@@ -1,0 +1,56 @@
+.constant
+objref  0xCAFE  // may be any value.  Needed by invokevirtual.
+.end-constant
+
+.main
+
+    .var
+        x
+        y
+        z
+        result
+    .end-var
+
+    BIPUSH 1
+    ISTORE x
+    BIPUSH 1
+    ISTORE y
+    BIPUSH 1
+    ISTORE z
+    ILOAD x
+    ILOAD y
+    ILOAD z
+    INVOKEVIRTUAL F
+    ISTORE result
+    ILOAD result
+    HALT
+
+.end-main
+
+
+.method F(x,y,z)
+
+    .var
+    .end-var
+
+                //Calcolo x AND y
+                ILOAD x
+                ILOAD y
+                IAND
+
+                //Calcolo y OR z
+                ILOAD y
+                ILOAD z
+                IOR
+                
+                //Confronto fra le 2 operazioni logiche
+                IF_ICMPEQ true
+                BIPUSH 0
+                GOTO return
+                
+    true:       BIPUSH 1
+
+    return:     IRETURN
+    
+.end-method
+

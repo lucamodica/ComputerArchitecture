@@ -1,0 +1,132 @@
+.constant
+objref  0xCAFE  // may be any value.  Needed by invokevirtual.
+.end-constant
+
+.main
+
+    .var
+        a
+        b
+        res
+    .end-var
+
+    BIPUSH 8
+    ISTORE a
+    BIPUSH 4
+    ISTORE b
+    ILOAD a
+    ILOAD b
+    INVOKEVIRTUAL mcm
+    ISTORE res
+    ILOAD res
+    HALT
+
+.end-main
+
+
+.method mcm(a,b)
+
+    .var
+    .end-var
+
+    LDC_W objref
+    ILOAD a
+    ILOAD b
+    INVOKEVIRTUAL mul
+    LDC_W objref
+    ILOAD a
+    ILOAD b
+    INVOKEVIRTUAL MCD
+    INVOKEVIRTUAL div
+    IRETURN
+
+.end-method
+
+
+.method div(a,b)
+
+    .var
+        i
+    .end-var
+
+                BIPUSH 0
+                ISTORE i
+
+    loop:       ILOAD a
+                ILOAD b
+                ISUB
+                IFLT return
+
+                //Se ancora nel ciclo, esegue a = a - b
+    calc:       ILOAD a
+                ILOAD b
+                ISUB
+                ISTORE a
+                BIPUSH 1
+                ILOAD i
+                IADD
+                ISTORE i
+                GOTO loop
+
+    return:     ILOAD i
+                IRETURN 
+
+.end-method
+
+
+.method mul(a,b)
+
+    .var
+        res
+        i
+    .end-var
+
+    loop:       ILOAD b
+                ILOAD i
+                IF_ICMPEQ return
+
+                //Se ancora nel ciclo, esegue mul = mul + a
+                ILOAD a
+                ILOAD res
+                IADD
+                ISTORE res
+                IINC i 1
+                GOTO loop
+
+    return:     ILOAD res
+                IRETURN 
+
+.end-method
+
+
+.method MCD(a,b)
+
+    .var
+    .end-var
+
+    loop:       ILOAD a
+                ILOAD b
+                IF_ICMPEQ return
+                ILOAD a
+                ILOAD b
+                ISUB
+                IFLT caso2
+
+                //Caso in cui a > b
+    caso1:      ILOAD a
+                ILOAD b
+                ISUB
+                ISTORE a
+                GOTO loop
+
+                //Caso in cui a < b
+    caso2:      ILOAD b
+                ILOAD a
+                ISUB
+                ISTORE b
+                GOTO loop
+
+    return:     ILOAD a
+                IRETURN 
+
+.end-method

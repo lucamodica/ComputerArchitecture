@@ -1,0 +1,49 @@
+.constant
+objref  0xCAFE  // may be any value.  Needed by invokevirtual.
+.end-constant
+
+.main
+
+    .var
+        x
+        y
+        result
+    .end-var
+
+    BIPUSH 13
+    ISTORE x
+    BIPUSH 5
+    ISTORE y
+    ILOAD x
+    ILOAD y
+    INVOKEVIRTUAL restoint
+    ISTORE result
+    ILOAD result
+    HALT
+
+.end-main
+
+
+.method restoint(x,y)
+
+    .var
+    .end-var
+
+                //Verifica x < y (se è vero, esce dal ciclo; altrimenti viene effettuato x)
+    loop:       ILOAD x
+                ILOAD y
+                ISUB
+                IFLT return
+
+                //x = x - y
+                ILOAD x
+                ILOAD y
+                ISUB
+                ISTORE x
+                GOTO loop
+
+    return:     ILOAD x
+                IRETURN
+    
+.end-method
+

@@ -1,0 +1,7 @@
+//Instruction SUBOP byte: difference between the top of stack and the parameter
+
+MAR = SP
+H = MBR
+H = -H
+PC = PC + 1; fetch
+MDR = TOS = TOS + H; wr; goto Main1

@@ -1,0 +1,6 @@
+//Istruzione SUMC1TOS: somma la cima dello stack con la prima costante
+
+MAR = CPP; rd
+SP = MAR = SP + 1
+H = MDR
+MDR = TOS = H + TOS; wr; goto Main1

@@ -1,0 +1,49 @@
+.constant
+objref  0xCAFE  // may be any value.  Needed by invokevirtual.
+.end-constant
+
+.main
+
+    .var
+        anno
+        z
+    .end-var
+
+    BIPUSH 1970
+    ISTORE anno
+    ILOAD anno
+    INVOKEVIRTUAL EDIZIONICOPPA
+    ISTORE z
+    ILOAD z
+
+.end-main
+
+.method EDIZIONICOPPA(hanno)
+
+    .var
+        cont
+    .end-var
+                //Valori iniziali delle variabili
+                BIPUSH 0
+                ISTORE cont
+                
+                //Verifica che la diffrenza tra anno di input e quello iniziale
+                //sia maggiore di 0; in caso contrario, il conteggio è terminato!
+    cont:       ILOAD hanno
+                BIPUSH 1950
+                ISUB
+                IFLT return
+                ILOAD cont
+                BIPUSH 1
+                IADD
+                ISTORE cont
+                ILOAD hanno
+                BIPUSH 3
+                ISUB
+                ISTORE hanno
+                GOTO cont
+
+    return:     ILOAD cont
+                IRETURN
+    
+.end-method

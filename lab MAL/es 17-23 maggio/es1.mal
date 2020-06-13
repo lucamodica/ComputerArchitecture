@@ -1,0 +1,6 @@
+//Instruction DUPAQUARTER: set in top of stack the current value on the top divided by 4
+
+MAR = SP = SP + 1
+TOS = TOS >> 1
+MDR = TOS = TOS >> 1; wr; goto Main1
+

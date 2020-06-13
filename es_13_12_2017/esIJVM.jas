@@ -1,0 +1,46 @@
+.constant
+objref  0xCAFE  // may be any value.  Needed by invokevirtual.
+.end-constant
+
+.main
+
+    .var
+        result
+    .end-var
+
+    BIPUSH 5 
+    INVOKEVIRTUAL sommanat
+    ISTORE result
+    ILOAD result
+    HALT
+
+.end-main
+
+
+.method sommanat(x)
+
+    .var
+        n
+        res
+    .end-var
+
+            BIPUSH 0
+            ISTORE n
+            BIPUSH 0
+            ISTORE res
+
+    sum:    ILOAD res
+            ILOAD n
+            IADD
+            ISTORE res
+            IINC n 1
+            ILOAD x
+            ILOAD n
+            ISUB
+            IFEQ end
+            GOTO sum
+            
+    end:    ILOAD res
+            IRETURN  
+    
+.end-method

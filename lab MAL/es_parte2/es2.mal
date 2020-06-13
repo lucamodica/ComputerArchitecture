@@ -1,0 +1,11 @@
+//Instruction BIPUSH1OR2 varnum: push the biggest value between LV+2 or LV+1 
+
+H = LV
+MAR = H = H + 1; rd
+MAR = H + 1; rd
+H = MDR;
+SP = MAR = SP + 1
+N = MDR - H; if(N) goto biggest1; else goto biggest2
+
+biggest2 TOS = MDR;wr; goto Main1
+biggest1 TOS = MDR = H;wr; goto Main1

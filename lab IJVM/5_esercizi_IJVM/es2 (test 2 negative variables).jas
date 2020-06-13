@@ -1,0 +1,50 @@
+.constant
+objref  0xCAFE  // may be any value.  Needed by invokevirtual.
+.end-constant
+
+.main
+
+    .var
+        x
+        y
+        flag
+    .end-var
+
+    BIPUSH -1
+    ISTORE x
+    BIPUSH -1
+    ISTORE y
+    ILOAD x
+    ILOAD y
+    INVOKEVIRTUAL both_lt
+    ISTORE flag
+    ILOAD flag
+    HALT
+
+.end-main
+
+
+.method both_lt(x,y)
+
+    .var
+    .end-var
+
+                //Verifica x<0 (se è vero, passa al confronto successivo)
+                ILOAD x
+                IFLT cmp_y
+                GOTO false
+                
+                //Verifica y<0 (se è vero, ritorna 1)
+    cmp_y:      ILOAD y
+                IFLT true
+                GOTO false
+
+    true:       BIPUSH 1 
+                GOTO return           
+                
+    false:      BIPUSH 0
+
+    return:     IRETURN
+    
+.end-method
+

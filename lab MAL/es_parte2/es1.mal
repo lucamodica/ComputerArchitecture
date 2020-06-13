@@ -1,0 +1,9 @@
+//Instruction TESTEQ varnum: test if varman is equal to zero, push 1 if yes or 0 if no
+
+H = LV
+MAR = MBRU + H; rd
+MAR = SP = SP + 1;
+Z = MDR; if(Z) goto testeqT; else goto testeqF
+
+testeqT MDR = TOS = 1;wr; goto Main1
+testeqF MDR = TOS = 0;wr; goto Main1

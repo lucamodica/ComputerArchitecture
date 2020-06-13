@@ -1,0 +1,5 @@
+//Instruction TRI: write TOS 2 times
+
+MAR = SP = SP + 1
+MDR = TOS; wr
+MAR = SP = SP + 1; wr; goto Main1

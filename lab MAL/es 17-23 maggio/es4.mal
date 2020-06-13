@@ -1,0 +1,6 @@
+//Istruzione COMPL2: sostituisce il top dello stack con il suo complemento a 2
+
+MAR = SP; rd
+SP = MAR = SP + 1
+H = MDR
+TOS = MDR = -H; wr; goto Main1

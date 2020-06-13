@@ -1,0 +1,4 @@
+//Instruction DIVTOS: substitute TOS with TOS/2
+
+MAR = SP 
+MDR = TOS >> 1; wr goto Main1

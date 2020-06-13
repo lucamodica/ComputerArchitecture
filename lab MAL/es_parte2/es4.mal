@@ -1,0 +1,11 @@
+//Instruction MULT varnum: product between TOS and N
+
+OPC = MBR
+MAR = SP
+MDR = 0
+
+mul MDR = MDR + TOS
+mul2    OPC = OPC - 1
+mul3    Z = OPC; if(Z) goto savemul; else goto mul
+
+savemul wr; goto Main1
