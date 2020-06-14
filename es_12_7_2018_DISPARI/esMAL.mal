@@ -1,0 +1,10 @@
+//Instruction SWAPLOC1S: swap TOS and first variable value
+
+MAR = LV; rd
+OPC = TOS
+MAR = SP; wr
+TOS = MDR
+MDR = OPC
+MAR = LV; wr; goto Main1
+
+
