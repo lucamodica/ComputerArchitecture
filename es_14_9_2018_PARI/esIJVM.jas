@@ -1,0 +1,50 @@
+.constant
+objref  0xCAFE  // may be any value.  Needed by invokevirtual.
+N 10
+.end-constant
+
+.main
+
+    .var
+        result
+    .end-var
+
+    BIPUSH 4
+    INVOKEVIRTUAL invmax
+    HALT
+
+.end-main
+
+
+.method invmax(y)
+
+    .var
+        x
+        i
+    .end-var
+
+            BIPUSH 0
+            ISTORE i
+            BIPUSH 0
+            ISTORE x
+
+    test:   ILOAD i
+            INVOKEVIRTUAL F
+            ISTORE x
+            ILOAD x
+            ILOAD y
+            IF_ICMPEQ end
+            IINC i 1
+            GOTO test
+            
+    end:    ILOAD i
+            IRETURN  
+    
+.end-method
+
+.method F(X)
+    LDC_W N
+    ILOAD X
+    ISUB
+    IRETURN
+.end-method

@@ -1,0 +1,6 @@
+//instruction SUBOP byte
+
+H = MBR
+MAR = SP
+PC = PC + 1; fetch
+MDR = TOS - H; wr; goto Main1
