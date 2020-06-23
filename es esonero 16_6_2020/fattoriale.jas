@@ -1,0 +1,72 @@
+.constant
+objref  0xCAFE  // may be any value.  Needed by invokevirtual.
+.end-constant
+
+.main
+
+    .var
+        n
+    .end-var
+
+            //Inizializzazione variabili
+            BIPUSH 3
+            INVOKEVIRTUAL fattoriale
+            ISTORE n
+            HALT
+
+.end-main
+
+.method fattoriale(n)
+
+    .var
+        fatt
+    .end-var
+
+            BIPUSH 1
+            ISTORE fatt
+            ILOAD n
+            IFEQ end
+
+    loop:   ILOAD n
+            BIPUSH 1
+            IF_ICMPEQ end
+            ILOAD fatt
+            ILOAD n
+            INVOKEVIRTUAL mult
+            ISTORE fatt
+            IINC n -1
+            GOTO loop
+            
+    end:    ILOAD fatt
+            IRETURN    
+    
+.end-method
+
+.method mult(x,y)
+
+    .var
+        mul
+    .end-var
+
+            BIPUSH 0
+            ISTORE mul
+
+    loop:   ILOAD y
+            IFEQ end
+
+            ILOAD mul
+            ILOAD x
+            IADD
+            ISTORE mul
+            IINC y -1
+            GOTO loop
+
+    end:    ILOAD mul
+            IRETURN    
+    
+.end-method 
+
+
+
+
+
