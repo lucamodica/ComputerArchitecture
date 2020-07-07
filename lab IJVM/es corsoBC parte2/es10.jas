@@ -1,0 +1,30 @@
+.constant
+objref  0xCAFE  // may be any value.  Needed by invokevirtual.
+.end-constant
+
+.main
+    .var
+        x
+    .end-var
+
+    BIPUSH 3
+    ISTORE x
+    LDC_W  objref
+    ILOAD x
+    INVOKEVIRTUAL not
+    HALT
+    
+.end-main
+
+.method not(x)
+
+    .var
+    .end-var
+    
+    BIPUSH -1
+    ILOAD x
+    ISUB           
+    IRETURN
+
+.end-method
+

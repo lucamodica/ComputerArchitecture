@@ -1,4 +1,4 @@
-//Instruction TESTEQ varnum: test if varman is equal to zero, push 1 if yes or 0 if no
+//Instruction TESTEQ varnum: test if varmun is equal to zero, push 1 if yes or 0 if no
 
 H = LV
 MAR = MBRU + H; rd

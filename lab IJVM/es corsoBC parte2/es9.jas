@@ -1,0 +1,45 @@
+.constant
+objref  0xCAFE  // may be any value.  Needed by invokevirtual.
+check 0x1
+.end-constant
+
+.main
+    .var
+        x
+        y
+        result
+    .end-var
+
+    BIPUSH 3
+    ISTORE x
+    BIPUSH 2
+    ISTORE y
+    LDC_W  objref
+    ILOAD x
+    ILOAD y
+    INVOKEVIRTUAL accendibit
+    ISTORE result
+    ILOAD result
+    HALT
+    
+.end-main
+
+.method accendibit(x,y)
+
+    .var
+    .end-var
+
+            LDC_W check
+    
+    loop:   ILOAD y
+            IFEQ  end
+            DUP
+            IADD
+            IINC
+            GOTO loop
+
+    end:    ILOAD x
+            IOR            
+            IRETURN
+
+.end-method
