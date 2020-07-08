@@ -1,0 +1,7 @@
+//istruction IMOD: reminder between 2 variables on the stack
+
+idiv1 MAR = SP = SP - 1; rd
+idiv2 H = TOS
+idiv3 N = MDR - H; if(Z) goto idiv5; else goto idiv4
+idiv4 MDR = MDR - H; goto idiv3
+idiv5 TOS = MDR; wr; goto Main1

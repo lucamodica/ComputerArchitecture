@@ -1,0 +1,10 @@
+//istruction FIBONACCI: calc fibonacci of TOS
+
+fibonacci1  OPC = 0
+fibonacci2  H = 1
+fibonacci3  Z = TOS = TOS - 1; if(Z) goto fibonacci7; else goto fibonacci4
+fibonacci4  MDR = H
+fibonacci5  H = H + OPC
+fibonacci6  OPC = MDR; goto fibonacci3
+fibonacci7  MAR = SP
+fibonacci8  MDR = TOS = H; wr; goto Main1

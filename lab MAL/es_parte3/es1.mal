@@ -1,12 +1,14 @@
 //istruction IMUL: product between 2 variables on the stack
 
 MAR = SP = SP - 1; rd
-OPC = 0
-Z = MDR; if(Z) goto endmul; else goto mul
+Z = H = TOS; if(Z) goto end; else goto check
+Z = MDR; if(Z) goto end; else goto check
 
-mul H = TOS
-    OPC = OPC + H
-    MDR = MDR - 1
-    Z = MDR; if(Z) goto endmul; else goto mul
+check  Z = MDR - 1; if(Z) goto end; else goto mul
 
-endmul TOS = MDR = OPC; wr; goto Main1
+mul     H = H + TOS
+        MDR = MDR - 1
+        goto check
+
+
+end    TOS = MDR = H; wr; goto Main1
