@@ -1,0 +1,57 @@
+.constant
+objref  0xCAFE  // may be any value.  Needed by invokevirtual.
+.end-constant
+
+.main
+
+    .var
+        b0
+        b1
+        b2
+    .end-var
+
+    BIPUSH 1
+    DUP
+    BIPUSH 0
+    ISTORE b0    
+    ISTORE b1    
+    ISTORE b2
+
+    LDC_W objref
+    ILOAD b0    
+    ILOAD b1    
+    ILOAD b2
+    INVOKEVIRTUAL  bin2dec
+    HALT
+            
+.end-main
+
+.method bin2dec(n)
+
+    .var
+    .end-var
+
+           BIPUSH 0
+   
+           ILOAD b0
+           IFEQ B1
+           BIPUSH 1
+           IADD
+           
+    B1:    ILOAD b1
+           IFEQ B2
+           BIPUSH 2
+           IADD
+   
+    B2:    ILOAD b2
+           IFEQ end
+           BIPUSH 4
+           IADD
+
+    end:   IRETURN
+
+.end-method
+
+
+
+

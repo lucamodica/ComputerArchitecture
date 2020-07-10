@@ -1,0 +1,7 @@
+//istruction REMOVEEQ: remove the word on TOS if equal to the second word on TOS
+
+removeeq1 MAR = SP - 1;rd 
+removeeq2 H = TOS
+removeeq3 Z = MDR - H; if(Z) goto removeeq4; else goto removeeq5
+removeeq4 SP = SP - 1
+removeeq5 goto Main1
