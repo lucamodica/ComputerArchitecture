@@ -1,0 +1,15 @@
+Per implementare la nuova istruzione scritta, dovremo andare a modificare 2 file: il file di configurazione (.conf) e il file 
+contenente il microprogramma (.mal). Innanzitutto, quello che dovremo fare è assegnare un indirizzo di memoria alla prima etichetta
+della nuova istruzione (ad es. removemin1), scrivendolo in fondo alla lista delle label con la seguente sintassi: 
+
+.label removemin1 "indirizzo"
+
+dove "indirizzo" rappresenta l'indirizzo esadecimale assegnato (ad es. 0x40). In seguito, le righe della microistruzione possono essere
+copiate in un qualsiasi punto del file .mal .
+Infine, l'ultima modifica verrò apportata al file .conf: sarà necessario aggiungere in una linea del file l'indirizzo dell'istruzione (lo stesso
+specificato nel file .mal) e l'etichetta con il quale verrà riconosciuta la nuova istruzione in linguaggio IJVM (seguito da eventuali parametri)(as es. REMOVEMIN).
+La sintassi è la seguente: 
+
+"indirizzo" REMOVEMIN
+
+dove "indirizzo", appunto, rappresenta quello specificato in precedenza nel file .mal .
