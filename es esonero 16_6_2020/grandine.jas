@@ -1,0 +1,59 @@
+.constant
+objref  0xCAFE  // may be any value.  Needed by invokevirtual.
+.end-constant
+
+.main
+
+    .var
+    .end-var
+
+    LDC_W objref
+    BIPUSH 7
+    INVOKEVIRTUAL grandine
+    HALT
+            
+.end-main
+
+.method grandine(n)
+
+    .var
+        i //risultato della divisione
+        x //resto della divisione
+    .end-var
+
+                //Inizializzazione x e i
+                ILOAD n
+                ISTORE x
+                BIPUSH 0
+                ISTORE i
+
+                //Verifica se il numero è pari
+    div:        ILOAD x
+                DUP
+                IFLT dispari
+                IFEQ pari
+                ILOAD x
+                BIPUSH 2
+                ISUB
+                ISTORE x
+                IINC i 1
+                GOTO div
+           
+    pari:       ILOAD i
+                GOTO end
+   
+    dispari:    ILOAD n
+                DUP
+                DUP
+                BIPUSH 1
+                IADD
+                IADD
+                IADD
+
+    end:        IRETURN
+
+.end-method
+
+
+
+
