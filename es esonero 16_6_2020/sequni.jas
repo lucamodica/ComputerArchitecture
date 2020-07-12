@@ -1,0 +1,70 @@
+.constant
+objref  0xCAFE  // may be any value.  Needed by invokevirtual.
+.end-constant
+
+.main
+
+    .var
+        result
+    .end-var
+
+    LDC_W objref
+    BIPUSH 12
+    BIPUSH 3
+    INVOKEVIRTUAL  sequnni
+    ISTORE result
+    ILOAD result
+    HALT
+            
+.end-main
+
+.method sequnni(n,s)
+
+    .var
+        i
+        c
+        m
+    .end-var
+
+                //Inizializzazione variabili
+                BIPUSH 32
+                ISTORE i
+                ILOAD s
+                ISTORE c
+                BIPUSH 1
+                ISTORE m
+
+    loop:       ILOAD n
+                ILOAD m
+                IAND
+                IFEQ reset
+                IINC c -1
+                ILOAD c
+                IFEQ success
+                GOTO check
+
+    reset:      ILOAD s
+                ISTORE c
+
+    check:      IINC i -1
+                ILOAD i
+                IFEQ unsuccess
+                ILOAD m
+                DUP
+                IADD
+                ISTORE m
+                GOTO loop
+
+    success:    BIPUSH 1
+                goto end
+
+    unsuccess:  BIPUSH 0
+                goto end      
+           
+    end:        IRETURN
+
+.end-method
+
+
+
+

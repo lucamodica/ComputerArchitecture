@@ -1,0 +1,11 @@
+//istruction DIVIDEBY2: divide local variable "varnum" by 2
+
+divideby21  MAR = LV + MBRU;rd
+divideby22  PC = PC + 1;fetch
+divideby23  TOS = MDR = MDR >> 2;wr; goto Main1
+
+
+
+
+
+
