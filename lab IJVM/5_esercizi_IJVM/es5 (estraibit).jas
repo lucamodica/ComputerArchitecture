@@ -9,7 +9,7 @@ objref 0xCAFE   //needed by invokevirtual instruction.
     .end-var
 
     //Parameters
-    BIPUSH 3
+    BIPUSH 7
     BIPUSH 2
 
     //calling the method and storing the result
