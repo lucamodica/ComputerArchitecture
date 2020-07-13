@@ -1,0 +1,61 @@
+.constant
+objref 0xCAFE   //needed by invokevirtual instruction.
+.end-constant
+
+.main
+
+    .var
+        result
+    .end-var
+
+    //Parameters
+    BIPUSH 3
+    BIPUSH 2
+
+    //calling the method and storing the result
+    INVOKEVIRTUAL estraibit
+    ISTORE result
+    ILOAD result
+    HALT
+
+.end-main
+
+
+.method estraibit(x,y)
+
+    .var
+        m
+    .end-var
+
+            //Initialize mask
+            BIPUSH 1
+            ISTORE m
+
+    loop:   //Start loop
+            ILOAD x
+            ILOAD m
+            IAND
+
+            //check y == 0; if true, we'll also check the bit value
+            ILOAD y
+            IFEQ check   
+            IINC y -1
+            ILOAD m
+            DUP
+            IADD
+            ISTORE m
+            GOTO loop
+
+            //Checking the bit value
+    check:  IFEQ res0
+
+            //Case 0
+    res1:   BIPUSH 1
+            GOTO end
+
+            //Case 1
+    res0:   BIPUSH 0
+
+    end:    IRETURN
+
+.end-method
