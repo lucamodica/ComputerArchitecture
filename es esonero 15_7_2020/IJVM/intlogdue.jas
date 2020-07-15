@@ -1,0 +1,50 @@
+.constant
+objref  0xCAFE  // may be any value.  Needed by invokevirtual.
+.end-constant
+
+.main
+
+    .var
+    .end-var
+
+    LDC_W objref
+    BIPUSH 11
+    INVOKEVIRTUAL intlogdue
+    HALT
+            
+.end-main
+
+.method intlogdue(x)
+
+    .var
+        m
+        i
+    .end-var
+
+                //Inizializzazione vars
+                BIPUSH 2
+                ISTORE m
+                BIPUSH 0
+                ISTORE i
+
+
+                //Controllo della differenza fra il valore di x
+                //e il valore della maschera; se minore di 0, il
+                //risultato sarà il valore memorizzato in quel 
+                //momento di i
+    loop:       ILOAD x
+                ILOAD m
+                ISUB
+                IFLT end
+                IINC i 1
+                ILOAD m
+                DUP
+                IADD
+                ISTORE m
+                GOTO loop
+           
+    end:        ILOAD i
+                IRETURN
+
+
+.end-method

@@ -11,6 +11,7 @@ objref  0xCAFE  // may be any value.  Needed by invokevirtual.
 
     BIPUSH 4
     ISTORE x
+    LDC_W objref
     ILOAD x
     INVOKEVIRTUAL fibonacci
     ISTORE res
@@ -34,7 +35,7 @@ objref  0xCAFE  // may be any value.  Needed by invokevirtual.
                 IF_ICMPEQ return_1
                 
                 //Caso ricorsivo: ritornerà f(x-1) + f(x-2)
-    return_fib: LDC_W objref
+                LDC_W objref
                 ILOAD x
                 BIPUSH 1
                 ISUB

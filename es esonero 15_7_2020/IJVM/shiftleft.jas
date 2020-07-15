@@ -1,0 +1,39 @@
+.constant
+objref  0xCAFE  // may be any value.  Needed by invokevirtual.
+.end-constant
+
+.main
+
+    .var
+    .end-var
+
+    LDC_W objref
+    BIPUSH 6
+    BIPUSH 2
+    INVOKEVIRTUAL shiftleft
+    HALT
+            
+.end-main
+
+.method shiftleft(x,k)
+
+    .var
+        i
+    .end-var
+
+                //Controllo che k sia uguale a 0
+    loop:       ILOAD k
+                IFEQ end  //Se 0, restituisco il risultato
+                ILOAD x //Altrimenti moltiplico per 2 il valore attuale di x
+                DUP
+                IADD
+                ISTORE x
+                IINC k -1
+                GOTO loop
+         
+           
+    end:        ILOAD x
+                IRETURN
+
+
+.end-method

@@ -1,0 +1,7 @@
+//istruction SETLOWBYTE: set the lowest byte of TOS at 0xFF
+
+setlowbyte1  MAR = SP
+setlowbyte2  OPC = -1; 
+setlowbyte3  H = -1 << 8
+setlowbyte4  H = OPC - H
+setlowbyte5  MDR = TOS = TOS OR H; wr; goto Main1

@@ -1,0 +1,61 @@
+.constant
+objref  0xCAFE  // may be any value.  Needed by invokevirtual.
+.end-constant
+
+.main
+
+    .var
+    .end-var
+
+    BIPUSH 6
+    INVOKEVIRTUAL serief
+    HALT
+            
+.end-main
+
+.method serief(n)
+
+    .var
+    .end-var
+
+                //Controllo che n sia 1
+                ILOAD n
+                BIPUSH 1
+                IF_ICMPEQ end
+                //Controllo che n sia 2
+                ILOAD n
+                BIPUSH 2
+                IF_ICMPEQ end
+                //Controllo che n sia 3
+                ILOAD n
+                BIPUSH 3
+                IF_ICMPEQ end
+
+
+                //Parte ricorsiva del metodo:
+                //ritorna f(n-3) + f(n-2) + f(n-1) 
+                LDC_W objref   //f(n-1)
+                ILOAD n
+                BIPUSH 1
+                ISUB
+                INVOKEVIRTUAL serief
+                LDC_W objref   //f(n-2)
+                ILOAD n
+                BIPUSH 2
+                ISUB
+                INVOKEVIRTUAL serief
+                IADD
+                LDC_W objref   //f(n-3)
+                ILOAD n
+                BIPUSH 3
+                ISUB
+                INVOKEVIRTUAL serief
+                IADD
+                IRETURN
+
+                //Parte finale del metodo: ritorna 1
+    end:        BIPUSH 1
+                IRETURN
+
+
+.end-method

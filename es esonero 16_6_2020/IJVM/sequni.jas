@@ -9,7 +9,7 @@ objref  0xCAFE  // may be any value.  Needed by invokevirtual.
     .end-var
 
     LDC_W objref
-    BIPUSH 12
+    BIPUSH 13
     BIPUSH 3
     INVOKEVIRTUAL  sequnni
     ISTORE result
@@ -64,7 +64,3 @@ objref  0xCAFE  // may be any value.  Needed by invokevirtual.
     end:        IRETURN
 
 .end-method
-
-
-
-

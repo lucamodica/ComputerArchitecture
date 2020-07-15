@@ -1,0 +1,8 @@
+//istruction SOTTRAISTACKSEPOS: substitute M[SP-1] and M[SP] with S = M[SP-1] - M[SP] on 
+//TOS, if M[SP-1] - M[SP] > 0
+
+sottraistacksepos1  MAR = SP -1; rd
+sottraistacksepos2  H = TOS
+sottraistacksepos3  N = MDR = MDR - H; if(N) goto sottraistacksepos5; else goto sottraistacksepos4
+sottraistacksepos4  TOS = MDR; wr
+sottraistacksepos5  goto Main1
