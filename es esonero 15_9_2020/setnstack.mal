@@ -1,0 +1,10 @@
+//Instruction SETNSTACK
+
+setnstack1 MAR = SP
+setnstack2 Z = MBR; if(Z) goto setnstack; else goto setnstack2
+setnstack3 MBR = MBR - 1; rd
+setnstack4 MDR = 1; wr
+setnstack5 MAR = MAR - 1
+setnstack6 goto setnstack2
+
+setnstack7 PC = PC + 1; fetch; goto Main1
